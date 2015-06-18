@@ -1,0 +1,19 @@
+node_modules/
+bower_components/
+*.log
+
+.sonar/
+test/results/
+build/
+dist/
+dev/
+doc/
+reports/
+test/results/
+.vagrant
+
+# webstorm, eclipse projects etc...
+.idea/*
+.project
+*.sublime*
+*.tmp

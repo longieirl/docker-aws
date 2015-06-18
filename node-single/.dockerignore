@@ -1,0 +1,14 @@
+# .dockerignore
+.git
+LICENSE
+VERSION
+README.md
+Changelog.md
+.env
+.eb*
+.el*
+Dockerrun.aws.json
+TaskDefinition.json
+*.png
+docker-compose.yml
+

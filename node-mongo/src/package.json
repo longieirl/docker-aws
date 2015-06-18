@@ -1,0 +1,14 @@
+{
+  "name": "express-upload",
+  "description": "express-upload: node.js, express, multer, easyimage, html5 progress upload example",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">= 0.10.x"
+  },
+  "private": true,
+  "dependencies": {
+    "express": "4.12.4",
+    "mongoose": "4.0.4",
+    "morgan": "1.5.3"
+  }
+}

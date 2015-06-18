@@ -1,0 +1,14 @@
+{
+  "AWSEBDockerrunVersion": "1",
+  "Image": {
+    "Name": "longieirl/build-data",
+    "Update": "true"
+  },
+  "Volumes": [
+    {
+      "HostDirectory": "/var/app/current/build",
+      "ContainerDirectory": "/var/app/current/build"
+    }
+  ],
+  "Logging": "/var/app/current/logs"
+}

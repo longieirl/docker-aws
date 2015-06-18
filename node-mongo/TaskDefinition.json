@@ -1,0 +1,83 @@
+{
+  "taskDefinitionArn": "arn:aws:ecs:eu-west-1:290137442252:task-definition/build:6",
+  "status": null,
+  "revision": 6,
+  "containerDefinitions": [
+    {
+      "volumesFrom": [
+        {
+          "readOnly": false,
+          "sourceContainer": "build-data"
+        }
+      ],
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 9000,
+          "protocol": "tcp"
+        }
+      ],
+      "command": [],
+      "environment": [],
+      "essential": true,
+      "entryPoint": [],
+      "links": [
+        "mongodb"
+      ],
+      "mountPoints": [],
+      "memory": 128,
+      "name": "build",
+      "cpu": 10,
+      "image": "longieirl/build"
+    },
+    {
+      "volumesFrom": [],
+      "portMappings": [],
+      "command": [],
+      "environment": [],
+      "essential": true,
+      "entryPoint": [],
+      "links": [],
+      "mountPoints": [],
+      "memory": 128,
+      "name": "build-data",
+      "cpu": 10,
+      "image": "longieirl/build-data"
+    },
+    {
+      "volumesFrom": [],
+      "portMappings": [
+        {
+          "hostPort": 27017,
+          "containerPort": 27017,
+          "protocol": "tcp"
+        }
+      ],
+      "command": [],
+      "environment": [],
+      "essential": true,
+      "entryPoint": [],
+      "links": [],
+      "mountPoints": [
+        {
+          "containerPath": "/data/db",
+          "sourceVolume": "build-mongo",
+          "readOnly": false
+        }
+      ],
+      "memory": 128,
+      "name": "mongodb",
+      "cpu": 10,
+      "image": "longieirl/mongodb"
+    }
+  ],
+  "volumes": [
+    {
+      "host": {
+        "sourcePath": "/var/app/mongodb"
+      },
+      "name": "build-mongo"
+    }
+  ],
+  "family": "build"
+}

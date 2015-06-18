@@ -1,0 +1,54 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "family": "build_env",
+  "volumes": [
+    {
+      "name": "build-mongo",
+      "host": {
+        "sourcePath": "/var/app/mongodb"
+      }
+    }
+  ],
+  "containerDefinitions": [
+    {
+      "name": "build-data",
+      "image": "longieirl/build-data",
+      "essential": true,
+      "memory": 128
+    },
+    {
+      "name": "mongodb",
+      "image": "longieirl/mongodb",
+      "essential": true,
+      "memory": 128,
+      "mountPoints": [
+        {
+          "sourceVolume": "build-mongo",
+          "containerPath": "/data/db",
+          "readOnly": false
+        }
+      ]
+    },
+    {
+      "name": "build",
+      "image": "longieirl/build",
+      "essential": true,
+      "memory": 128,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 9000
+        }
+      ],
+      "links": [
+        "mongodb"
+      ],
+      "volumesFrom": [
+        {
+          "sourceContainer": "build-data",
+          "readOnly": true
+        }
+      ]
+    }
+  ]
+}

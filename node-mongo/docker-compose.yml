@@ -1,0 +1,16 @@
+buildData:
+    image: longieirl/build-data
+mongodb:
+  image: longieirl/mongodb
+  ports:
+    - "27017:27017"
+  volumes:
+    - /data/db
+node:
+  image: longieirl/build 
+  ports:
+    - "9000:9000"
+  links:
+    - "mongodb:mongodb"
+  volumes_from:
+    - buildData

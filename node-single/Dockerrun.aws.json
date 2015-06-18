@@ -1,0 +1,12 @@
+{
+  "AWSEBDockerrunVersion": "1",
+  "Logging": "/var/log/nodejs-single",
+  "Image": {
+    "Update": "false"
+  },
+  "Ports": [
+        {
+          "ContainerPort": "9000"
+        }
+      ]
+}

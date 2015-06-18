@@ -1,0 +1,19 @@
+{
+  "AWSEBDockerrunVersion": "1",
+  "Image": {
+    "Name": "longieirl/mongodb",
+    "Update": "true"
+  },
+  "Ports": [
+    {
+      "ContainerPort": "27017"
+    }
+  ],
+  "Volumes": [
+    {
+      "HostDirectory": "/var/app/mongodb",
+      "ContainerDirectory": "/data/db"
+    }
+  ],
+  "Logging": "/var/log/mongodb"
+}
