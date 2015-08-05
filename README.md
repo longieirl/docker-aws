@@ -1,5 +1,5 @@
 # Deploying Docker VM's to AWS using Elastic Beanstalk
-# Corporate proxy is not configured as part of these configurations - as these VM's are being pushed to docker.io to be consumed by the AWS
+### Corporate proxy is not configured as part of these configurations - as these VM's are being pushed to docker.io to be consumed by the AWS
 
 ### Notes 
 * AWS Console
@@ -75,20 +75,6 @@ docker run -itd -p 9000:9000 --name build -v /Users/johnlong/Dropbox/Docker/dock
 docker run -itd -p 80:9000 --name build --volumes-from build-data --link mongodb:mongodb longieirl/build
 ```
   
-### Docker.io public repository
-In order to expose the docker VM's in a multi-container environment, the Dockerrun.aws.json needs to pull the images from a public/private repository. The Dockerrun.aws.js contains customised settings for AWS i.e. memeory, space etc...
-```sh
-docker login
-docker push longieirl/build-base
-docker push longieirl/mongodb
-docker push longieirl/build
-docker push longieirl/build-data
-docker pull longieirl/build-base
-docker pull longieirl/mongodb
-docker pull longieirl/build
-docker pull longieirl/build-data
-```
-
 ### Setup Docker Compose
 Docker compose works similarly to how Dockerrun.aws.json works, if this works locally then the same settings should work on AWS
 ```sh
@@ -99,6 +85,13 @@ docker-compose up -d
 docker-compose ps
 docker-compose stop
 ```
+
+### Issue with x509 certs
+
+```sh
+boot2docker ssh 'sudo /etc/init.d/docker restart'
+```
+Note: tlsverify=false should never be a recommended workaround
 
 ### Lessons Learnt
 * Deploying a new version of the Dockerrun.aws.json file causes the app servers to not restart. Requires an environment restart
